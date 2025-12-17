@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc -b",
+    "test:run": "vitest --run",
+    "test:coverage": "vitest --coverage",
+    "test:e2e": "playwright test",
+    "quality": "pnpm lint && pnpm typecheck && pnpm test:run",
+    "verify": "pnpm quality && pnpm test:e2e && pnpm build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -20,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
