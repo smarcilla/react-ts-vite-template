@@ -16,6 +16,9 @@
     "test:e2e": "playwright test",
     "quality": "pnpm lint && pnpm typecheck && pnpm test:run",
     "verify": "pnpm quality && pnpm test:e2e && pnpm build",
+    "docker:build": "docker build -t react-ts-vite-template .",
+    "docker:run": "docker run -d -p 3000:80 --name react-ts-vite-app react-ts-vite-template",
+    "docker:stop": "docker stop react-ts-vite-app && docker rm react-ts-vite-app",
     "prepare": "husky"
   },
   "dependencies": {
