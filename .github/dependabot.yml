@@ -78,6 +78,7 @@ updates:
           - "*"
 
   # Docker base images
+  # Note: Only patch updates to avoid unstable/non-existent major versions
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
@@ -91,3 +92,10 @@ updates:
     labels:
       - "dependencies"
       - "docker"
+    # Ignore major version updates - these should be evaluated manually
+    # to ensure the new version exists and is stable (LTS preferred)
+    ignore:
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nginx"
+        update-types: ["version-update:semver-major"]
